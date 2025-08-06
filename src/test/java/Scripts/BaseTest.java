@@ -22,7 +22,7 @@ public class BaseTest {
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         driver.manage().window().maximize();
-        driver.get("...");
+        driver.get("https://demo5.cybersoft.edu.vn/jobDetail/5");
         log.info("Da truy cap thanh cong");
     }
 
