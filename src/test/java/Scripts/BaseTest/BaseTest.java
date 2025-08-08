@@ -18,11 +18,11 @@ public class BaseTest {
     @BeforeMethod
     public void setUpTest() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(60));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         driver.manage().window().maximize();
-        driver.get("https://demo5.cybersoft.edu.vn/jobDetail/5");
+        driver.get("https://demo5.cybersoft.edu.vn/");
         log.info("Da truy cap thanh cong");
     }
 

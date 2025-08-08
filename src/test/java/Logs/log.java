@@ -1,15 +1,10 @@
 package Logs;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.logging.Logs;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class Log {
+public class log {
     //Initialize Log4j instance
     private static final Logger logger = LogManager.getLogger(Logs.class);
 

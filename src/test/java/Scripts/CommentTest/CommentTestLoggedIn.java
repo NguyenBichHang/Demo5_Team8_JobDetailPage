@@ -1,13 +1,10 @@
 package Scripts.CommentTest;
 
-import Listener.SimpleListener;
 import Pages.DetailJobPage;
-import Scripts.BaseTest.NotLoggedInBaseTest;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import Scripts.BaseTest.LoggedInBaseTest;
 
-@Listeners(SimpleListener.class)
-public class CommentTest extends NotLoggedInBaseTest {
+public class CommentTestLoggedIn extends LoggedInBaseTest{
     @Test
     public void testDefaultValue() {
         DetailJobPage detailJobPage = new DetailJobPage(driver);
@@ -15,10 +12,9 @@ public class CommentTest extends NotLoggedInBaseTest {
     }
 
     @Test
-    public void testCommentWithoutLoggedIn() {
+    public void testCommentSuccess() {
         DetailJobPage detailJobPage = new DetailJobPage(driver);
-        detailJobPage.inputComment("test");
-        detailJobPage.verifyCommentFailBecauseNotLoggedIn();
+        detailJobPage.inputComment("hangtest");
     }
 
     @Test
