@@ -33,4 +33,30 @@ public class CommentTest extends NotLoggedInBaseTest {
         DetailJobPage detailJobPage = new DetailJobPage(driver);
         detailJobPage.verifyImageDisplayed();
     }
+
+    @Test
+    public void testImageHoverTransition() {
+        DetailJobPage detailJobPage = new DetailJobPage(driver);
+        detailJobPage.verifyImageHoverTransition();
+    }
+
+    //    Test Package
+    @Test
+    public void testContinueButtonNotLoggedIn() {
+        DetailJobPage detailJobPage = new DetailJobPage(driver);
+        detailJobPage.verifyContinueButtonNotLoggedIn();
+    }
+
+    @Test
+    public void testCompareButtonNotLoggedIn() {
+        DetailJobPage detailJobPage = new DetailJobPage(driver);
+        detailJobPage.verifyCompareButtonNotLoggedIn();
+    }
+
+    //    Test About The Seller
+    @Test
+    public void testContactMeButtonNotLoggedIn() {
+        DetailJobPage detailJobPage = new DetailJobPage(driver);
+        detailJobPage.verifyContactMeButtonNotLoggedIn();
+    }
 }

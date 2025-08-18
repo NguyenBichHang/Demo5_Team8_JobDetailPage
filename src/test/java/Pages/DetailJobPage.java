@@ -1,13 +1,18 @@
 package Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class DetailJobPage {
     WebDriver driver;
+    private JavascriptExecutor js;
+    private Actions actions;
+
     public DetailJobPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -105,6 +110,52 @@ public class DetailJobPage {
         Assert.assertTrue(jobImage.isDisplayed(), "Service image không hiển thị");
         String imageSrc = jobImage.getAttribute("src");
         Assert.assertFalse(imageSrc.isEmpty(), "Image source không được để trống");
+    }
+
+    public void verifyImageHoverTransition(){
+        
+        js = (JavascriptExecutor) driver;
+
+        String initialTransform = js.executeScript(
+                "return window.getComputedStyle(arguments[0]).transform", jobImage).toString();
+        actions.moveToElement(jobImage).perform();
+        String hoverTransform = js.executeScript(
+                "return window.getComputedStyle(arguments[0]).transform", jobImage).toString();
+        Assert.assertNotEquals(hoverTransform, initialTransform,
+                "Image không có hover transition effect - Transform không thay đổi");        actions.moveByOffset(100, 100).perform();
+        String finalTransform = js.executeScript(
+                "return window.getComputedStyle(arguments[0]).transform", jobImage).toString();
+        System.out.println("Final transform after mouse leave: " + finalTransform);
+    }
+
+    public void verifyContactMeButtonNotLoggedIn(){
+        contactMeButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
+    }
+
+    public void verifyContactMeButtonLoggedIn(){
+        contactMeButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
+    }
+
+    public void verifyContinueButtonNotLoggedIn(){
+        continueButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
+    }
+
+    public void verifyContinueButtonLoggedIn(){
+        continueButton.click();
+//        Assert.assertEquals(driver.findElement(errorMessageEmailInvalidChar).getText(), "使用できない文字が含まれています。", "Không đúng nội dung error message");
+    }
+
+    public void verifyCompareButtonNotLoggedIn(){
+        continueButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
+    }
+
+    public void verifyCompareButtonLoggedIn(){
+        continueButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("compare"), "FAIL. Vẫn ở trang Job Detail");
     }
 
     //div[@class='FAQ mt-5']//li[1]//*[name()='svg']
