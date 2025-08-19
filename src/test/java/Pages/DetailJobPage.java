@@ -32,6 +32,12 @@ public class DetailJobPage {
     @FindBy(xpath ="//h1[@class='job-title']")
     private WebElement jobTitle;
 
+    @FindBy(xpath ="//h2[normalize-space()='About This Gig']")
+    private WebElement jobDescriptionTitle;
+
+    @FindBy(xpath ="//div[@class='description']")
+    private WebElement jobDescription;
+
     @FindBy(xpath ="(//div[@class='rating'])[1]")
     private WebElement ratingCount1;
 
@@ -62,6 +68,9 @@ public class DetailJobPage {
     private WebElement contactMeButton;
 
     //  Locator FAQ
+    @FindBy(xpath ="(//div[@class='FAQ mt-5']")
+    private WebElement faqSection;
+
     @FindBy(xpath ="(//h3[contains(text(),'There are many passages but the majority?')])[1]")
     private WebElement question1;
 
@@ -106,6 +115,22 @@ public class DetailJobPage {
     @FindBy(xpath ="//button[@class='comment-submit']")
     private WebElement commentButton;
 
+//    ****Navigation****
+    public void verifyNavigationLinkDisplayed(){
+        Assert.assertTrue(navigation1.isDisplayed(), "Link Navigation không hiển thị");
+        Assert.assertTrue(navigation2.isDisplayed(), "Link Navigation không hiển thị");
+        Assert.assertTrue(navigation3.isDisplayed(), "Link Navigation không hiển thị");
+//        String imageSrc = jobImage.getAttribute("src");
+//        Assert.assertFalse(imageSrc.isEmpty(), "Image source không được để trống");
+    }
+
+//    ****Job Detail****
+    public void verifyJobDetail(){
+        Assert.assertTrue(jobTitle.isDisplayed(), "Job title không được hiển thị");
+        Assert.assertTrue(jobDescriptionTitle.isDisplayed(), "Job Description title không được hiển thị");
+        Assert.assertTrue(jobDescription.isDisplayed(), "Job Description không được hiển thị");
+    }
+
     public void verifyImageDisplayed(){
         Assert.assertTrue(jobImage.isDisplayed(), "Service image không hiển thị");
         String imageSrc = jobImage.getAttribute("src");
@@ -128,6 +153,7 @@ public class DetailJobPage {
         System.out.println("Final transform after mouse leave: " + finalTransform);
     }
 
+    //    ****About The Seller****
     public void verifyContactMeButtonNotLoggedIn(){
         contactMeButton.click();
         Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
@@ -138,6 +164,7 @@ public class DetailJobPage {
         Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
     }
 
+    //    ****Package****
     public void verifyContinueButtonNotLoggedIn(){
         continueButton.click();
         Assert.assertTrue(driver.getCurrentUrl().contains("login"), "FAIL. Vẫn ở trang Job Detail");
@@ -157,7 +184,18 @@ public class DetailJobPage {
         continueButton.click();
         Assert.assertTrue(driver.getCurrentUrl().contains("compare"), "FAIL. Vẫn ở trang Job Detail");
     }
+    //    ****Seacrh****
+    public void inputSearch(String search){
+        textboxSearch.sendKeys(search);
+        searchButton.click();
+    }
 
+    //    ****FAQ****
+    public void FAQ() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", faqSection);
+    }
+
+    //    ****Comment****
     //div[@class='FAQ mt-5']//li[1]//*[name()='svg']
     public void isTextareaEmpty() {
         String value = commentTextarea.getAttribute("value");

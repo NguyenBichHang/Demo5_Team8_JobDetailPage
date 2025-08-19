@@ -26,6 +26,11 @@ public class CommentTest extends NotLoggedInBaseTest {
         DetailJobPage detailJobPage = new DetailJobPage(driver);
         detailJobPage.verifyTextareaRequired();
     }
+    //    Test Job Detail Display
+    public void testJobDetailDisplay() {
+        DetailJobPage detailJobPage = new DetailJobPage(driver);
+        detailJobPage.verifyImageDisplayed();
+    }
 
     //    Test Image
     @Test
