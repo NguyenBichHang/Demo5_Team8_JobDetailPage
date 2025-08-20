@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class DetailJobPage {
     WebDriver driver;
     private JavascriptExecutor js;
@@ -71,22 +73,22 @@ public class DetailJobPage {
     @FindBy(xpath ="(//div[@class='FAQ mt-5']")
     private WebElement faqSection;
 
-    @FindBy(xpath ="(//h3[contains(text(),'There are many passages but the majority?')])[1]")
+    @FindBy(xpath ="(//input[@type='checkbox'])[1]")
     private WebElement question1;
 
-    @FindBy(xpath ="(//h3[contains(text(),'There are many passages but the majority?')])[2]")
+    @FindBy(xpath ="(//input[@type='checkbox'])[2]")
     private WebElement question2;
 
-    @FindBy(xpath ="(//h3[contains(text(),'There are many passages but the majority?')])[3]")
+    @FindBy(xpath ="(//input[@type='checkbox'])[3]")
     private WebElement question3;
 
-    @FindBy(xpath ="(//h3[contains(text(),'There are many passages but the majority?')])[4]")
+    @FindBy(xpath ="(//input[@type='checkbox'])[4]")
     private WebElement question4;
 
     @FindBy(xpath ="//div[@class='FAQ mt-5']//li[1]//p[1]")
     private WebElement answer1;
 
-    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[1]//p[2]")
+    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[2]//p[1]")
     private WebElement answer2;
 
     @FindBy(xpath ="//div[@class='FAQ mt-5']//li[1]//p[3]")
@@ -95,8 +97,20 @@ public class DetailJobPage {
     @FindBy(xpath ="//div[@class='FAQ mt-5']//li[1]//p[4]")
     private WebElement answer4;
 
-    @FindBy(xpath ="div[@class='FAQ mt-5']//li[1]//*[name()='svg']")
+    @FindBy(xpath ="//*[name()='svg']/*[name()='path'][contains(@d, 'M')]")
+    private WebElement arrowButton;
+
+    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[1]//*[name()='svg']")
     private WebElement arrowButton1;
+
+    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[2]//*[name()='svg']")
+    private WebElement arrowButton2;
+
+    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[3]//*[name()='svg']")
+    private WebElement arrowButton3;
+
+    @FindBy(xpath ="//div[@class='FAQ mt-5']//li[4]//*[name()='svg']")
+    private WebElement arrowButton4;
 
     //  Locator textbox search
     @FindBy(xpath ="//input[@type='text']")
@@ -193,6 +207,20 @@ public class DetailJobPage {
     //    ****FAQ****
     public void FAQ() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", faqSection);
+    }
+
+    public void arrowButtonExist() {
+        Assert.assertTrue(arrowButton1.isDisplayed(),
+                "Không tìm thấy nút mũi tên trong FAQ section");
+        Assert.assertTrue(arrowButton1.isEnabled(),
+                "Nút mũi tên không thể click");
+    }
+
+    public void isAnswerHidden() {
+        Assert.assertTrue(arrowButton1.isDisplayed(),
+                "Không tìm thấy nút mũi tên trong FAQ section");
+        Assert.assertTrue(arrowButton1.isEnabled(),
+                "Nút mũi tên không thể click");
     }
 
     //    ****Comment****
