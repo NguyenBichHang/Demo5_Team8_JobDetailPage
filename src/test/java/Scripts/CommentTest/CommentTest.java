@@ -64,4 +64,6 @@ public class CommentTest extends NotLoggedInBaseTest {
         DetailJobPage detailJobPage = new DetailJobPage(driver);
         detailJobPage.verifyContactMeButtonNotLoggedIn();
     }
+
+
 }
